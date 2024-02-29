@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="container py-5">
+<div class="container py-5 d-none">
   <div class="row">
     <% @products.each do |product|%>
       <%= link_to product_path(product), class:"text-decoration-none" do %>
@@ -17,4 +17,86 @@
       <% end %>
     <% end %>
   </div>
+</div>
+
+<div class="selection-categories pb-2 mb-3 pt-3">
+<div class="container">
+<ul class="list-inline tabs-underlined">
+  <li>
+    <a href="#" class="tab-underlined active">Aventais</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Esteiras</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Artes</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Eventos</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Mochila</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Papelaria</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Brinquedos</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Livraria</a>
+  </li>
+  <li>
+    <a href="#" class="tab-underlined">Lancheiras</a>
+  </li>
+</ul>
+</div>
+</div>
+
+<div class="cards container justify-content-center d-flex">
+
+<div class="card-trip col m-1">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
+    </div>
+    <h2 class="card-trip-pricing">£99.99</h2>
+  </div>
+</div>
+
+<div class="card-trip col m-1">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
+    </div>
+    <h2 class="card-trip-pricing">£99.99</h2>
+  </div>
+</div>
+
+<div class="card-trip col m-1">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
+    </div>
+    <h2 class="card-trip-pricing">£99.99</h2>
+  </div>
+</div>
+
+<div class="card-trip col m-1">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
+    </div>
+    <h2 class="card-trip-pricing">£99.99</h2>
+  </div>
+</div>
+
 </div>

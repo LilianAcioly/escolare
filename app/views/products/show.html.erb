@@ -45,6 +45,14 @@
             <button class="btn btn-primary ml-auto text-white font bold">Compre Aqui</button>
           </div>
           <div><%= @product.description %></div>
+
+
+          <% if @product.user === current_user  %>
+            <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
+            <%= link_to "Excluir Produto",
+            product_path(@product),
+            data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
+          <% end %>
         </div>
       </div>
     </div>

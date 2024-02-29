@@ -1,2 +1,23 @@
-<h1>Aqui vai ficar um formulario para criar um novo produto</h1>
-<p>Redirecionar para product_path</p>
+<div class="container py-5">
+  <div class="row">
+  <div class="col-12 col-md-6 offset-lg-3">
+<div class="bg-white rounded p-3 shadow">
+<h3>Oferte seu produto aqui:</h3>
+<%= simple_form_for @product do |f| %>
+  <%= f.input :name, label: "Nome do Produto" %>
+  <%= f.input :category, label: "Categoria" %>
+  <%= f.input :description, label: "Descrição" %>
+  <%= f.input :quantity, label: "Quantidade" %>
+  <%= f.input :price, label: "Preço" %>
+  <%= f.input :image, as: :file, label: "Adicionar imagem do produto" %>
+          <div class="d-flex justify-content-between">
+          <%= f.button :submit, "Criar Produto" %>
+        <% end %>
+         <%= link_to root_path do %>
+    <button class="btn btn-flat ml-auto">Voltar para Home</button>
+  <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

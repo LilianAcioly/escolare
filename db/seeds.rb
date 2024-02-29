@@ -8,12 +8,22 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-8.times do
-  nome = Faker::Internet.username
-  User.create(
-    {
-      email: Faker::Internet.email(name: nome, domain: 'gmail.com'),
-      password: 'MiojoTomateSuave'
-    }
-  )
-end
+# 8.times do
+#  nome = Faker::Internet.username
+#  User.create(
+#    {
+#      email: Faker::Internet.email(name: nome, domain: 'gmail.com'),
+#      password: 'MiojoTomateSuave'
+#    }
+#  )
+# end
+
+Product.create(
+  {
+    name: 'Massinha',
+    description: 'Massinha para o seu filho fazer modelagem! Antialérgica',
+    price: 55.98,
+    category: 'artes',
+    user_id: 1
+  }
+)

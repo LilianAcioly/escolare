@@ -1,2 +1,14 @@
 <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<p>Aqui talvez um banner</p>
+
+<div class="container py-5">
+  <div class="row">
+    <% @products.each do |product|%>
+      <%= link_to product_path(product), class:"text-decoration-none" do %>
+       <div class="card-category">
+          <p><%= product.name %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

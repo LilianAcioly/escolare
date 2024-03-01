@@ -8,11 +8,8 @@
 <p><%= @product.rating %></p>
 <p><%= @product.price %></p>
 
-<<<<<<< HEAD
 
   <%= link_to "Excluir Produto",
   product_path(@product),
   data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
-=======
 <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
->>>>>>> 28cd1e1a4ccaeeede26ee298ce16624dd6e892c1

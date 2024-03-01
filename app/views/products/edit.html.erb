@@ -1,0 +1,22 @@
+<div class="container py-5">
+
+  <div class="row">
+
+    <div class="col-12 col-md-6 offset-lg-3">
+
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Edite seu Produto</h3>
+        <%= simple_form_for @product do |f| %>
+          <%= f.input :name, label: "Nome do Produto", input_html: { value: @product.name } %>
+          <%= f.input :category, label: "Categoria", input_html: { value: @product.category } %>
+          <%= f.input :description, label: "Descrição", input_html: { value: @product.description } %>
+          <%= f.input :quantity, label: "Quantidade", input_html: { value: @product.quantity } %>
+          <%= f.input :price, label: "Preço", input_html: { value: @product.quantity }%>
+          <div class="d-flex justify-content-center">
+            <%= f.button :submit, "Editar Produto" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

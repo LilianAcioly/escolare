@@ -9,3 +9,6 @@
 <p><%= @product.price %></p>
 
 
+  <%= link_to "Excluir Produto",
+  product_path(@product),
+  data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>

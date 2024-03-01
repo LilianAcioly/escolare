@@ -1,7 +1,11 @@
 <h1>Aqui o produto tal vai ser mostrado</h1>
 
-<%= cl_image_tag @product.photo.key, height: 300, width: 400, crop: :fill %>
+<% @product.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <p><%= @product.name %></p>
 <p><%= @product.description %></p>
 <p><%= @product.rating %></p>
 <p><%= @product.price %></p>
+
+

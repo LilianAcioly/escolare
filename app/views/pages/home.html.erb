@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="carousel-item">
-      <div class="banner mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1452860606245-08befc0ff44b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+      <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1452860606245-08befc0ff44b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
           <div class="container">
             <h1>Do pré ao <strong>ensino basico!</strong><strong></strong></h1>
             <p></p>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="carousel-item">
-      <div class="banner mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+      <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
           <div class="container">
             <h1>Materiais para <strong>festinhas e eventos</strong> você tambem pode encontrar ou vender aqui! <strong></strong></h1>
             <p></p>
@@ -87,33 +87,49 @@
 </div>
 
 <div class="cards container">
+  <% @products.each_with_index do |product, index| %>
+    <div class="card-trip col m-1">
+      <%= link_to product_path(product), class: "text-decoration-none" do %>
+        <div id="carouselExample2<%= index %>" class="carousel slide">
+          <div class="carousel-inner">
+            <% product.photos.each_with_index do |photo, photo_index| %>
+              <div class="carousel-item <%= 'active' if photo_index.zero? %>">
+                <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path photo.key, height: 300, width: 400, crop: :fill %>);">
+                </div>
+              </div>
+            <% end %>
+          </div>
 
-<% @products.each do |product| %>
-  <div class="card-trip col m-1">
-    <%= link_to product_path(product), class: "text-decoration-none" do %>
-      <% product.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class: "img-card-trip" %>
-      <% end %>
-      <div class="card-trip-infos">
-        <div>
-          <h2><%= product.name %></h2>
-          <p><%= product.description %></p>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2<%= index %>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2<%= index %>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <h2 class="card-trip-pricing">R$<%= product.price %></h2>
-      </div>
-    <% end %>
-  </div>
-<% end %>
 
-<div class="card-trip col m-1 d-none">
-  <img class= "img-card-trip" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-  <div class="card-trip-infos">
-    <div>
-      <h2>Title here</h2>
-      <p>Short description here!</p>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= product.name %></h2>
+            <p><%= product.description %></p>
+          </div>
+          <h2 class="card-trip-pricing">R$<%= product.price %></h2>
+        </div>
+      <% end %> <!-- Fechamento do link_to -->
     </div>
-    <h2 class="card-trip-pricing">£99.99</h2>
-  </div>
-</div>
+  <% end %>
 
+  <div class="card-trip col m-1 d-none">
+    <img class= "img-card-trip" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <div class="card-trip-infos">
+      <div>
+        <h2>Title here</h2>
+        <p>Short description here!</p>
+      </div>
+      <h2 class="card-trip-pricing">£99.99</h2>
+    </div>
+  </div>
 </div>

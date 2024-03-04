@@ -43,6 +43,15 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      redirect_to root_path, notice: "Produto excluído com sucesso."
+    else
+      redirect_to root_path, alert: "Ocorreu um erro ao excluir o seu produto!"
+    end
+  end
+
   private
 
   def product_params

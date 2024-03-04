@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.products = @products
+    @order.user = current_user
+    @order.product = @product
     if @order.save
       redirect_to product_order_path, notice: 'the order was successfully created.'
     else
@@ -21,15 +22,17 @@ class OrdersController < ApplicationController
 
   def destroy
     order = Order.find(params[:id])
-    product = order.product
-    order.destroy
-    redirect_to product_path(product), notice: 'the order was successfully erased'
+    if order.destroy
+      redirect_to product_order_path, notice: 'the order was successfully destroyed.'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :user_id)
+    params.require(:order).permit(:quantity)
   end
 
   def set_products

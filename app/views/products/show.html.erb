@@ -1,20 +1,62 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="">
+<div class="container py-3">
+
+          <div class="d-flex justify-content-end gap-3 mb-3">
+          <% if @product.user === current_user  %>
+            <div class="text-end">
+              <%= link_to edit_product_path(@product), title: "Clique aqui para editar o produto" do %>
+                <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-pen"></i> Editar Produto</button>
+              <% end %>
+            </div>
+            <div class="text-end">
+              <%= link_to product_path(@product),
+              data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} do %>
+                <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-trash"></i> Excluir Produto</button>
+              <% end %>
+            </div>
+          <% end %>
+          </div>
+
       <div class="bg-white rounded p-3 shadow">
+      <div class="row no_margin">
 
 
-<div class="cards container">
-    <div class="card-trip col m-1">
-        <div id="carouselExample2" class="carousel slide">
+        <div class="col-lg-6 column_infos d-flex flex-column justify-content-between">
+          <div class="col-12 p-2 name">
+            <h1><%= @product.name.capitalize %></h1>
+            <p>Categoria:<%= @product.category.capitalize %></p>
+            <div class="text-share">Disponíveis:<b><%= @product.quantity %></b></div>
+            <div class="d-flex align-items-center justify-content-end">
+              <p class="text-share my-2">Compartilhe:</p>
+              <button class="button-social"><i class="fa-brands fa-square-facebook"></i></button>
+              <button class="button-social"><i class="fa-brands fa-square-instagram"></i></button>
+              <button class="button-social"><i class="fa-brands fa-square-x-twitter"></i></button>
+              <button class="button-social"><i class="fa-brands fa-square-pinterest"></i></button>
+            </div>
+          </div>
+          <div class="col-12 p-2 bar_price d-flex justify-content-end">
+            <div class="row">
+              <div class="col-sm-6 text-price d-flex justify-content-center">R$<b><%= @product.price %></b></div>
+              <div class="col-sm-6 text-end">
+                <%= link_to new_product_order_path(@product) do %>
+                  <button class="btn btn-primary text-white font-bold">Compre Agora</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 column_img">
+          <div class="card-trip col-12">
+          <div id="carouselExample2" class="carousel slide">
           <div class="carousel-inner">
             <% @product.photos.each_with_index do |photo, photo_index| %>
               <div class="carousel-item <%= 'active' if photo_index.zero? %>">
-                <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= cl_image_path photo.key, height: 400, width: 400, crop: :fill %>);">
+                <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= cl_image_path photo.key, height: 200, width: 300, crop: :fill %>);">
                 </div>
               </div>
             <% end %>
           </div>
+
 
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -25,32 +67,14 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div><!-- Fechamento do link_to -->
-    </div>
-
-            <div>
-                <h1><%= @product.name.capitalize %></h1>
-            <div>
-            <div>Descrição:
-              <%= @product.description.capitalize %></div>
-                <div class="text-end h2 mt-3 text-end">R$<%= @product.price %>
-                <div class="d-flex justify-content-end">
-              <button class="btn btn-primary text-white font-bold">Compre Agora</button>
-                </div>
-              </div>
-            </div>
-          <% if @product.user === current_user  %>
-            <div class="mt-3 text-end">
-              <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
-            </div>
-            <div class="mt-1 text-end">
-              <%= link_to "Excluir Produto",
-              product_path(@product),
-              data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
-            </div>
-          <% end %>
+          </div><!-- Fechamento do link_to -->
+          </div>
+          </div>
         </div>
-      </div>
-    </div>
+        </div>
+
+  <div class="bg-white rounded p-3 shadow border-top">
+  <h2>Descrição:</h2>
+<%= @product.description.capitalize %>
   </div>
-</div>
+  </div>

@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
     @order = Order.all
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
   def new
     @order = Order.new
   end
@@ -14,7 +18,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.product = @product
     if @order.save
-      redirect_to product_order_path, notice: 'the order was successfully created.'
+      redirect_to product_order_path(@order), notice: 'the order was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,4 +1,4 @@
-<div class="bg-sessions">>
+<div class="bg-sessions">
   <div class="container py-5">
 
       <div class="bg-white rounded p-3 shadow">
@@ -10,18 +10,17 @@
 
         </div>
 
-        <div class="row-two d-flex justify-content-between">
+        <div class="row-two d-flex justify-content-evenly">
 
           <%= image_tag @product.photos[0] %>
 
-          <div class="product_info">
+          <div class="product_info d-flex flex-column justify-content-evenly">
 
             <h4><%= @product.name %></h4>
 
-            <div class="d-flex">
-              <h5>Estoque:</h5>
-              <p><%=@product.quantity%></p>
-            </div>
+
+            <p>Estoque: <%=@product.quantity%></p>
+
 
             <h3 class="card-trip-pricing">R$<%= @product.price %></h3>
 

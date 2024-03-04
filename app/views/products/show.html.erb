@@ -35,7 +35,9 @@
               <%= @product.description.capitalize %></div>
                 <div class="text-end h2 mt-3 text-end">R$<%= @product.price %>
                 <div class="d-flex justify-content-end">
-              <button class="btn btn-primary text-white font-bold">Compre Agora</button>
+                  <%= link_to new_product_order_path(@product) do %>
+                    <button class="btn btn-primary ml-auto text-white font-weight-bold">Compre Agora</button>
+                  <% end %>
                 </div>
               </div>
             </div>

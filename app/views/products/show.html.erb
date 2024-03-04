@@ -1,57 +1,53 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
+    <div class="">
       <div class="bg-white rounded p-3 shadow">
 
-            <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="banner mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1629652487043-fb2825838f8c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-                  <div class="container">
-                    <p></p>
-                    <%= link_to new_product_path do %>
-                      <% end %>
-                  </div>
+
+<div class="cards container">
+    <div class="card-trip col m-1">
+        <div id="carouselExample2" class="carousel slide">
+          <div class="carousel-inner">
+            <% @product.photos.each_with_index do |photo, photo_index| %>
+              <div class="carousel-item <%= 'active' if photo_index.zero? %>">
+                <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(<%= cl_image_path photo.key, height: 400, width: 400, crop: :fill %>);">
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="banner mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1452860606245-08befc0ff44b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-                  <div class="container">
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="banner mt-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-                  <div class="container">
-                    <p></p>
-                  </div>
+            <% end %>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div><!-- Fechamento do link_to -->
+    </div>
+
+            <div>
+                <h1><%= @product.name.capitalize %></h1>
+            <div>
+            <div>Descrição:
+              <%= @product.description.capitalize %></div>
+                <div class="text-end h2 mt-3 text-end">R$<%= @product.price %>
+                <div class="d-flex justify-content-end">
+              <button class="btn btn-primary text-white font-bold">Compre Agora</button>
                 </div>
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-           <div>
-          <h1><%= @product.name %></h1>
-          <div>
-            <div><%= @product.price %></div>
-            <button class="btn btn-primary ml-auto text-white font bold">Compre Aqui</button>
-          </div>
-          <div><%= @product.description %></div>
-
-
           <% if @product.user === current_user  %>
-            <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
-            <%= link_to "Excluir Produto",
-            product_path(@product),
-            data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
+            <div class="mt-3 text-end">
+              <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
+            </div>
+            <div class="mt-1 text-end">
+              <%= link_to "Excluir Produto",
+              product_path(@product),
+              data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
+            </div>
           <% end %>
         </div>
       </div>

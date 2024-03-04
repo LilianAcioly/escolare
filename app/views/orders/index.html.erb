@@ -6,10 +6,10 @@
     <div class="col-12 col-md-6 offset-lg-3">
 
       <div class="bg-white rounded p-3 shadow">
-      <h1>Veja abaixo sua compra, <%= @user.name %></h1>
+      <h1>Revise abaixo sua ordem de compra:</h1>
       <ul>
-      <% @orders.each do |order| %>
-      <li><%= order.product.name %> - Quantity: <%= order.quantity %></li>
+      <% @order.each do |order| %>
+      <li><%= order.product.name %> - Quantidade: <%= order.quantity %></li>
       <% end %>
       </ul>
 

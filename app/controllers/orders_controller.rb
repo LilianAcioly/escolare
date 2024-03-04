@@ -26,6 +26,11 @@ class OrdersController < ApplicationController
     redirect_to product_path(product), notice: 'the order was successfully erased'
   end
 
+  def myorder
+    @myorder = Myorder.find(params[:id])
+    @orders = @myorder.orders
+  end
+
   private
 
   def order_params

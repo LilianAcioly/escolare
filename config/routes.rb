@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   resources :orders, only: :destroy
 
+  get "myorders", to: "users/:id/myorders#show"
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

@@ -15,7 +15,7 @@
           <%= f.input :price, label: "Preço" %>
           <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Adicionar imagem do produto" %>
           <div class="d-flex justify-content-center">
-            <%= f.button :submit, "Criar Produto" %>
+            <%= f.button :submit, "Criar Produto", class: "btn btn-primary ml-auto text-white font-weight-bold" %>
           </div>
         <% end %>
       </div>

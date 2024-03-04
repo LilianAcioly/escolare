@@ -67,10 +67,30 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-          </div><!-- Fechamento do link_to -->
-          </div>
-          </div>
-        </div>
+        </div><!-- Fechamento do link_to -->
+    </div>
+
+            <div>
+                <h1><%= @product.name.capitalize %></h1>
+            <div>
+            <div>Descrição:
+              <%= @product.description.capitalize %></div>
+                <div class="text-end h2 mt-3 text-end">R$<%= @product.price %>
+                <div class="d-flex justify-content-end">
+              <button class="btn btn-primary text-white font-bold">Compre Agora</button>
+                </div>
+              </div>
+            </div>
+          <% if @product.user === current_user  %>
+            <div class="mt-3 text-end">
+              <%= link_to "Editar Produto", edit_product_path(@product), title: "Clique aqui para editar o produto" %>
+            </div>
+            <div class="mt-1 text-end">
+              <%= link_to "Excluir Produto",
+              product_path(@product),
+              data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
+            </div>
+          <% end %>
         </div>
 
   <div class="bg-white rounded p-3 shadow border-top">

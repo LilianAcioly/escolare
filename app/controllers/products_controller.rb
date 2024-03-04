@@ -22,6 +22,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.user == current_user
+      @product.destroy
+      redirect_to products_path, notice: "Produto excluído com sucesso."
+    else
+      redirect_to products_path, alert: "Você não tem permissão para excluir este produto."
+    end
+  end
+
   def edit
     @product = Product.find(params[:id])
   end

@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders
   end
-  resources :orders, only: :destroy
+
+  resources :users do
+    resources :orders, only: %i[index destroy]
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"

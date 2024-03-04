@@ -34,9 +34,9 @@
 }
 
 .card-trip h2 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  color: #FC6736;
+  color: #000000;
   margin: 0;
 }
 
@@ -60,6 +60,10 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.card-trip-infos .card-trip-pricing {
+  color: #FC6736;
 }
 
 .cards {

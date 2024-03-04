@@ -43,33 +43,17 @@
 <div class="selection-categories pb-2 mb-3 pt-3">
 <div class="container">
 <ul class="list-inline tabs-underlined">
+<% prodCat = ["Artes", "Aventais", "Brinquedos", "Esteiras", "Eventos", "Lancheiras", "Livraria", "Mochilas", "Papelaria"]%>
   <li>
-    <a href="#" class="tab-underlined active">Aventais</a>
+    <%= link_to root_path, class: (params[:category].blank? ? "tab-underlined active" : "tab-underlined") do %>
+    <i class="fa-solid fa-border-all"></i>
+    <% end %>
   </li>
+<% prodCat.each do |categ| %>
   <li>
-    <a href="#" class="tab-underlined">Esteiras</a>
+    <%= link_to categ, root_path(category: categ), class: (params[:category] == categ ? "tab-underlined active" : "tab-underlined") %>
   </li>
-  <li>
-    <a href="#" class="tab-underlined">Artes</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Eventos</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Mochila</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Papelaria</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Brinquedos</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Livraria</a>
-  </li>
-  <li>
-    <a href="#" class="tab-underlined">Lancheiras</a>
-  </li>
+<% end %>
 </ul>
 </div>
 </div>
@@ -121,15 +105,4 @@
       <% end %> <!-- Fechamento do link_to -->
     </div>
   <% end %>
-
-  <div class="card-trip col m-1 d-none">
-    <img class= "img-card-trip" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-    <div class="card-trip-infos">
-      <div>
-        <h2>Title here</h2>
-        <p>Short description here!</p>
-      </div>
-      <h2 class="card-trip-pricing">£99.99</h2>
-    </div>
-  </div>
 </div>

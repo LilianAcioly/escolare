@@ -14,11 +14,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(quantity: params["quantity"])
     @order.user = current_user
     @order.product = @product
     if @order.save
-      redirect_to product_order_path(@order), notice: 'the order was successfully created.'
+      redirect_to product_order_path(@product, @order), notice: 'the order was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

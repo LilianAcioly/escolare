@@ -1,73 +1,113 @@
 <div class="container py-3">
-          <div class="d-flex justify-content-end gap-3 mb-3">
-          <% if @product.user === current_user  %>
-            <div class="text-end">
-              <%= link_to edit_product_path(@product), title: "Clique aqui para editar o produto" do %>
-                <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-pen"></i> Editar Produto</button>
-              <% end %>
-            </div>
-            <div class="text-end">
-              <%= link_to product_path(@product),
-              data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} do %>
-                <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-trash"></i> Excluir Produto</button>
-              <% end %>
-            </div>
-          <% end %>
-          </div>
-      <div class="bg-white rounded p-3 shadow">
-      <div class="row no_margin">
 
+  <div class="d-flex justify-content-end gap-3 mb-3">
 
-        <div class="col-lg-6 column_infos d-flex flex-column justify-content-between">
-          <div class="col-12 p-2 name">
-            <h1><%= @product.name.capitalize %></h1>
-            <p>Categoria:<%= @product.category.capitalize %></p>
-            <div class="text-share">Disponíveis:<b><%= @product.quantity %></b></div>
-            <div class="d-flex align-items-center justify-content-end">
-              <p class="text-share my-2">Compartilhe:</p>
-              <button class="button-social"><i class="fa-brands fa-square-facebook"></i></button>
-              <button class="button-social"><i class="fa-brands fa-square-instagram"></i></button>
-              <button class="button-social"><i class="fa-brands fa-square-x-twitter"></i></button>
-              <button class="button-social"><i class="fa-brands fa-square-pinterest"></i></button>
-            </div>
-          </div>
-          <div class="col-12 p-2 bar_price d-flex justify-content-end">
-            <div class="row">
-              <div class="col-sm-6 text-price d-flex justify-content-center">R$<b><%= @product.price %></b></div>
-              <div class="col-sm-6 text-end">
-                <%= link_to new_product_order_path(@product) do %>
-                  <button class="btn btn-primary text-white font-bold">Compre Agora</button>
-                <% end %>
-              </div>
-            </div>
+    <!-- Botões de editar, excluir e criar mais produtos aparecem caso o usuário seja
+    o mesmo que criou o produto visualizado -->
+
+    <% if @product.user === current_user  %>
+
+      <div class="text-end">
+        <%= link_to edit_product_path(@product), title: "Clique aqui para editar o produto" do %>
+          <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-pen"></i> Editar Produto</button>
+        <% end %>
+      </div>
+
+      <div class="text-end">
+        <%= link_to product_path(@product),
+          data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} do %>
+          <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-trash"></i> Excluir Produto</button>
+        <% end %>
+      </div>
+
+      <div class="text-end">
+        <%= link_to new_product_path, title: "Clique aqui para criar um novo produto" do %>
+          <button class="btn btn-primary text-white font-bold"><i class="fa-solid fa-plus"></i> Criar Produto</button>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="bg-white rounded p-3 shadow">
+    <div class="row no_margin">
+
+      <!-- Nome do produto, Categoria, Estoque e Redes sociais -->
+      <div class="col-lg-6 column_infos d-flex flex-column justify-content-between">
+        <div class="col-12 p-2 name">
+
+          <h1><%= @product.name.capitalize %></h1>
+
+          <p>Categoria:<%= @product.category.capitalize %></p>
+
+          <div class="text-share">Disponíveis:<b><%= @product.quantity %></b></div>
+
+          <div class="d-flex align-items-center justify-content-end">
+            <p class="text-share my-2">Compartilhe:</p>
+            <button class="button-social"><i class="fa-brands fa-square-facebook"></i></button>
+            <button class="button-social"><i class="fa-brands fa-square-instagram"></i></button>
+            <button class="button-social"><i class="fa-brands fa-square-x-twitter"></i></button>
+            <button class="button-social"><i class="fa-brands fa-square-pinterest"></i></button>
           </div>
         </div>
-        <div class="col-lg-6 column_img">
-          <div class="card-trip col-12">
-          <div id="carouselExample2" class="carousel slide">
-          <div class="carousel-inner">
-            <% @product.photos.each_with_index do |photo, photo_index| %>
-              <div class="carousel-item <%= 'active' if photo_index.zero? %>">
-                <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= cl_image_path photo.key, height: 200, width: 300, crop: :fill %>);">
+
+
+        <!-- Preço e Formulário de compra -->
+        <div class="col-12 p-2 bar_price d-flex justify-content-end">
+          <div class="row d-flex flex-row-reverse">
+
+              <div class="col-sm-6 text-price d-flex justify-content-end">R$<b><%= @product.price %></b></div>
+
+              <div class="row d-flex flex-row-reverse">
+                <div class="col-sm-6 text-end">
+                  <%= form_tag product_orders_path(@product) do %>
+                    <div class="input-group">
+                      <%= number_field_tag :quantity, 1, class: "form-control" %>
+                      <button type="submit" class="btn btn-primary text-white font-bold">Compre Agora</button>
+                    </div>
+                  <% end %>
                 </div>
               </div>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-          </div><!-- Fechamento do link_to -->
-          </div>
+
           </div>
         </div>
+      </div>
+
+      <div class="col-lg-6 column_img">
+        <div class="card-trip col-12">
+
+          <!-- Início do Carousel de imagem do produto-->
+          <div id="carouselExample2" class="carousel slide">
+
+            <div class="carousel-inner">
+              <% @product.photos.each_with_index do |photo, photo_index| %>
+                <div class="carousel-item <%= 'active' if photo_index.zero? %>">
+                  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= cl_image_path photo.key, height: 200, width: 300, crop: :fill %>);">
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div><!-- Final do Carousel de imagem do produto-->
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parte de descrição do produto -->
   <div class="bg-white rounded p-3 shadow border-top">
-  <h2>Descrição:</h2>
-<%= @product.description.capitalize %>
+    <h2>Descrição:</h2>
+    <%= @product.description.capitalize %>
   </div>
-  </div>
+
+</div>

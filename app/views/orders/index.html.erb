@@ -5,14 +5,14 @@
         <div class="bg-white rounded p-3 shadow">
         <h1>Revise abaixo sua compra:</h1>
        <ul>
-        <% @order.each do |order| %>
+        <% @order.each_with_index do |order, index| %>
         <div d-flex>
         <h2>Produto: <%= order.product.name %></h2>
         <p>Quantidade: <%= order.quantity %></p>
         <p>Valor unitário: <%= number_to_currency(order.product.price) %></p>
         <p>Valor total: <%= number_to_currency(order.product.price * order.quantity) %></p>
         <%= link_to "Excluir ordem de compra",
-        products_path(@product),
+        user_order_path(order.user.id, order),
         data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?"} %>
         </div>
         <% end %>

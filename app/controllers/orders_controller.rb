@@ -27,9 +27,9 @@ class OrdersController < ApplicationController
   def destroy
     order = Order.find(params[:id])
     if order.destroy
-      redirect_to product_order_path, notice: 'the order was successfully destroyed.'
+      redirect_to user_orders_path(current_user), notice: 'the order was successfully destroyed.'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to user_orders_path(current_user), notice: 'A ordem de compra não foi excluída'
     end
   end
 
